@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const authRouter = require("./routes/auth/auth-routes");
-require('dotenv').config()
+require("dotenv").config();
 
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
@@ -15,7 +15,6 @@ mongoose
   .catch((error) => console.log(error));
 
 const App = express();
-
 
 App.use(
   cors({
