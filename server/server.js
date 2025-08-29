@@ -3,16 +3,19 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const authRouter = require("./routes/auth/auth-routes");
+require('dotenv').config()
 
+const PORT = process.env.PORT;
+const MONGO_URI = process.env.MONGO_URI;
 // create a database connection -> u can also
 // create a separate file for this and then import/use that file
 mongoose
-  .connect("mongodb+srv://ashishota:ashis@cluster0.tb8qvv3.mongodb.net/")
+  .connect(MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch((error) => console.log(error));
 
 const App = express();
-const PORT = process.env.PORT || 5000;
+
 
 App.use(
   cors({
