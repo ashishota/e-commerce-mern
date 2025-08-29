@@ -7,11 +7,11 @@ const registerUser = async (req, res) => {
   const { userName, email, password } = req.body;
 
   try {
-    const hashPassword = await bcrypt.hash(password, 12);
+    const hashedPassword = await bcrypt.hash(password, 12);
     const newUser = new User({
       userName,
       email,
-      hashPassword,
+      password: hashedPassword,
     });
 
     await newUser.save();
@@ -23,7 +23,7 @@ const registerUser = async (req, res) => {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Some Error Occured",
+      message: e.message,
     });
   }
 };
