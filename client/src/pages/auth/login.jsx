@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import CommonForm from "@/components/common/form";
 import { useDispatch } from "react-redux";
 import { loginUser } from "@/store/auth-slice";
+import { useToast } from "@/components/ui/use-toast";
 
 const initialState = {
   email: "",
@@ -13,6 +14,7 @@ const initialState = {
 function AuthLogin() {
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
+  const { toast } = useToast();
 
   function onSubmit(event) {
     event.preventDefault();
@@ -24,7 +26,6 @@ function AuthLogin() {
           description: data?.payload?.message,
           variant: "success",
         });
-        navigate("/auth/login");
       } else {
         toast({
           title: "Error",

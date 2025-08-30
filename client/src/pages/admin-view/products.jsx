@@ -1,4 +1,4 @@
 function AdminProducts() {
-  return <div>admin orders</div>;
+  return <div>admin products</div>;
 }
 export default AdminProducts;
