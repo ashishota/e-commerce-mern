@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const authRouter = require("./routes/auth/auth-routes");
 require("dotenv").config();
+const adminProductsRouter = require("./routes/admin/products-routes");
 
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
@@ -34,5 +35,6 @@ App.use(
 App.use(cookieParser());
 App.use(express.json());
 App.use("/api/auth", authRouter);
+App.use("/api/admin/products", adminProductsRouter);
 
 App.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));

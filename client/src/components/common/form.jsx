@@ -1,10 +1,12 @@
+// form.jsx
+
 import {
   Select,
   SelectContent,
   SelectItem,
-  SelectValue,
   SelectTrigger,
-} from "@radix-ui/react-select";
+  SelectValue,
+} from "@/components/ui/select";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
@@ -24,6 +26,7 @@ function CommonForm({
       case "input":
         element = (
           <input
+            className="w-[95%] mx-auto p-2 border rounded-md"
             name={getControlItem.name}
             placeholder={getControlItem.placeholder}
             id={getControlItem.name}
@@ -49,17 +52,15 @@ function CommonForm({
             }
             value={value}
           >
-            <SelectTrigger className="w-full ">
+            <SelectTrigger className="w-[95%] mx-auto p-2 border rounded-md">
               <SelectValue placeholder={getControlItem.placeholder} />
             </SelectTrigger>
             <SelectContent>
-              {getControlItem.options && getControlItem.options?.length > 0
-                ? getControlItem.options.map((optionItem) => (
-                    <SelectItem key={optionItem.id} value={optionItem.id}>
-                      {optionItem.label}
-                    </SelectItem>
-                  ))
-                : null}
+              {getControlItem.options?.map((optionItem) => (
+                <SelectItem key={optionItem.id} value={optionItem.id}>
+                  {optionItem.label}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         );
@@ -67,6 +68,7 @@ function CommonForm({
       case "textarea":
         element = (
           <Textarea
+            className="w-[95%] mx-auto p-2 border rounded-md"
             name={getControlItem.name}
             placeholder={getControlItem.placeholder}
             id={getControlItem.id}
@@ -83,6 +85,7 @@ function CommonForm({
       default:
         element = (
           <input
+            className="w-[95%] mx-auto p-2 border rounded-md"
             name={getControlItem.name}
             placeholder={getControlItem.placeholder}
             id={getControlItem.name}
@@ -105,7 +108,9 @@ function CommonForm({
       <div className="flex flex-col gap-3">
         {formControls.map((controlItem) => (
           <div className="grid w-full gap-1.5" key={controlItem.name}>
-            <Label className="mb-1">{controlItem.label}</Label>
+            <Label className="ml-2 text-sm font-bold text-gray-700 dark:text-gray-300">
+              {controlItem.label}
+            </Label>
             {renderInputsByComponentType(controlItem)}
           </div>
         ))}
